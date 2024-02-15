@@ -1,0 +1,53 @@
+.header {
+  display: flex;
+  align-items: center;
+  height: 12rem;
+  padding: 0 4rem;
+  justify-content: space-between;
+}
+
+.homelink {
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+.logo {
+  font-size: 8rem;
+}
+
+.logo:hover {
+  color: var(--accent);
+}
+
+.button {
+  width: 4rem;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--foreground);
+}
+
+.button:hover {
+  color: var(--accent);
+}
+
+@media screen and (max-width: 1080px) {
+  .header {
+    padding: 0 1rem;
+    height: 8rem;
+  }
+
+  .logo {
+    font-size: 6rem;
+  }
+
+  .button {
+    width: 4rem;
+    font-size: 1.5rem;
+  }
+
+  .nav {
+    display: none;
+  }
+}

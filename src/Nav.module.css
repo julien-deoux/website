@@ -1,0 +1,37 @@
+.nav {
+  flex: 1;
+}
+
+.nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8rem;
+}
+
+.link {
+  margin: 0;
+  padding: 0;
+}
+
+.link a {
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+.link a:hover {
+  color: var(--accent);
+}
+
+.link a.selected {
+  font-weight: 800;
+}
+
+@media screen and (max-width: 1080px) {
+  .nav ul {
+    gap: 0;
+    justify-content: space-around;
+  }
+}
