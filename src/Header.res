@@ -10,8 +10,18 @@ module HeaderButton = {
 module VolumeSwitch = {
   @react.component
   let make = () => {
+    let {play, stop} = React.useContext(Player.playerContext)
     let (isPlaying, setIsPlaying) = React.useState(() => false)
-    <HeaderButton onClick={_ => setIsPlaying(current => !current)}>
+    let toggle = () =>
+      setIsPlaying(current => {
+        if current {
+          stop()
+        } else {
+          ignore(play())
+        }
+        !current
+      })
+    <HeaderButton onClick={_ => toggle()}>
       {if isPlaying {
         <VolumeHigh />
       } else {

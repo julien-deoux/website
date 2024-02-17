@@ -1,5 +1,4 @@
 @module external styles: {..} = "./App.module.css"
-
 %%raw(`import bwavatar from './bwavatar.png';`)
 @val external bwavatar: string = "bwavatar"
 

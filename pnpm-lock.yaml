@@ -9,8 +9,8 @@ devDependencies:
     specifier: ^5.5.0
     version: 5.5.0(rescript@11.0.1)(vite@5.1.1)
   '@rescript/core':
-    specifier: ^0.7.0
-    version: 0.7.0(rescript@11.0.1)
+    specifier: ^1.0.0
+    version: 1.0.0(rescript@11.0.1)
   '@rescript/react':
     specifier: ^0.12.1
     version: 0.12.1(react-dom@18.2.0)(react@18.2.0)
@@ -23,6 +23,9 @@ devDependencies:
   rescript:
     specifier: ^11.0.1
     version: 11.0.1
+  rescript-web-audio:
+    specifier: ^0.2.0
+    version: 0.2.0
   vite:
     specifier: ^5.1.1
     version: 5.1.1
@@ -250,10 +253,10 @@ packages:
       vite: 5.1.1
     dev: true
 
-  /@rescript/core@0.7.0(rescript@11.0.1):
-    resolution: {integrity: sha512-5arTnw1EVPvssqq4v+XHkigROoWXYm/3pD+ZyOSeJgnbzMccRibGWb4L6Ss3QBoEkpuCodX06RnLx8Vqa3kECQ==}
+  /@rescript/core@1.0.0(rescript@11.0.1):
+    resolution: {integrity: sha512-F5HURYYx8Kp6h1KBiri2nFwGKR16o9/XTCNl2TEWfCwqR+MTzf/lpuPuB6ajnaYytsU0kTUBIFI0DOoLgkDxSg==}
     peerDependencies:
-      rescript: ^10.1.0 || ^11.0.0
+      rescript: '>=11.0.0 || ^11.1.0-rc.2'
     dependencies:
       rescript: 11.0.1
     dev: true
@@ -562,6 +565,13 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
+    dev: true
+
+  /rescript-web-audio@0.2.0:
+    resolution: {integrity: sha512-P4QWyF8L3Rvn3CLnh+PwYTndXFtktLR5b4Cj63F2l67yBl7t+XfFJ8dG0vTpxSs+F7ul4IW+GOWrAV0PB0wdWw==}
+    dependencies:
+      '@rescript/core': 1.0.0(rescript@11.0.1)
+      rescript: 11.0.1
     dev: true
 
   /rescript@11.0.1:

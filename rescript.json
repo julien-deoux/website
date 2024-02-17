@@ -17,6 +17,10 @@
   },
 
   "suffix": ".res.js",
-  "bs-dependencies": ["@rescript/core", "@rescript/react"],
+  "bs-dependencies": [
+    "@rescript/core",
+    "@rescript/react",
+    "rescript-web-audio"
+  ],
   "bsc-flags": ["-open RescriptCore"]
 }
