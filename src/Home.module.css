@@ -7,7 +7,7 @@
 .avatar {
   position: absolute;
   z-index: 0;
-  background-image: url("./bwavatar.png");
+  background-image: url("./bwavatar.jpg");
   background-size: calc(max(50vw, 100vh)) auto;
   background-repeat: no-repeat;
   background-position-x: center;
