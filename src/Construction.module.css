@@ -16,9 +16,44 @@
   margin: 0 2rem;
 }
 
-.subtitle {
+.cta {
   font-family: "Manrope", sans-serif;
   font-size: 1.5rem;
-  letter-spacing: 0.05em;
+  font-weight: 300;
+  letter-spacing: 0.03em;
   margin: 0 2rem;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.subtitle {
+  font-family: "EB Garamond", serif;
+  font-size: 2rem;
+  font-weight: 400;
+  margin: 1rem 0;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list > li {
+  margin: 0.5em 0;
+  padding: 0;
+}
+
+.link {
+  color: var(--foreground);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+}
+
+.link:hover {
+  color: var(--accent);
 }

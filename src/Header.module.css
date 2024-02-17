@@ -32,6 +32,15 @@
   color: var(--accent);
 }
 
+.left,
+.right {
+  width: 10rem;
+}
+
+.right {
+  text-align: right;
+}
+
 @media screen and (max-width: 1080px) {
   .header {
     padding: 0 1rem;
@@ -47,7 +56,7 @@
     font-size: 1.5rem;
   }
 
-  .nav {
+  .center {
     display: none;
   }
 }

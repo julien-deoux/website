@@ -8,7 +8,7 @@ let make = () =>
     </div>
     <div className={styles["copy"]}>
       <div className={styles["greetings"]}>
-        {React.string("I am ")}
+        {React.string("Hi! I am ")}
         <strong> {React.string("Julien Déoux")} </strong>
         {React.string(",")}
       </div>
