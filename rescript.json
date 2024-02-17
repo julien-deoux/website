@@ -15,7 +15,6 @@
   "jsx": {
     "version": 4
   },
-
   "suffix": ".res.js",
   "bs-dependencies": [
     "@rescript/core",

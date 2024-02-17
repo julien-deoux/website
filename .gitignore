@@ -1,4 +1,5 @@
 node_modules
 *.res.js
 lib
+dist
 src/aftermath.mp3
