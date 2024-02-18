@@ -23,7 +23,7 @@
   position: absolute;
   inset: 0;
   background-image: radial-gradient(
-    ellipse farthest-side at 30% 80%,
+    ellipse 35vw 80vh at 15vw 80vh,
     transparent 50%,
     var(--background)
   );
