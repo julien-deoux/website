@@ -86,10 +86,14 @@ let play = async () => {
 
 let stop = () => {
   switch queue.timeout.contents {
-  | Some(timeoutId) => clearTimeout(timeoutId)
+  | Some(timeoutId) => {
+      clearTimeout(timeoutId)
+      queue.timeout := None
+    }
   | None => ()
   }
   queue.current.contents.stop()
+  queue.current := createTrack()
 }
 
 type player = {
