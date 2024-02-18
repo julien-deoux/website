@@ -11,12 +11,17 @@ let make = () => {
         <h2 className={styles["subtitle"]}> {s("Software")} </h2>
         <ul className={styles["list"]}>
           <li>
-            <a className={styles["link"]} href="https://linkedin.com/in/julien-deoux">
+            <a
+              className={styles["link"]}
+              href="https://linkedin.com/in/julien-deoux"
+              target="_blank">
               {s("Linkedin")}
             </a>
           </li>
           <li>
-            <a className={styles["link"]} href="https://github.com/julien-deoux"> {s("Github")} </a>
+            <a className={styles["link"]} href="https://github.com/julien-deoux" target="_blank">
+              {s("Github")}
+            </a>
           </li>
         </ul>
       </div>
@@ -24,19 +29,23 @@ let make = () => {
         <h2 className={styles["subtitle"]}> {s("Music")} </h2>
         <ul className={styles["list"]}>
           <li>
-            <a className={styles["link"]} href="https://julien-deoux.bandcamp.com">
+            <a className={styles["link"]} href="https://julien-deoux.bandcamp.com" target="_blank">
               {s("Bandcamp")}
             </a>
           </li>
           <li>
             <a
               className={styles["link"]}
-              href="https://www.youtube.com/channel/UCIibZ-r7mfCqf-UfFhZ2DzQ">
+              href="https://www.youtube.com/channel/UCIibZ-r7mfCqf-UfFhZ2DzQ"
+              target="_blank">
               {s("Youtube")}
             </a>
           </li>
           <li>
-            <a className={styles["link"]} href="https://www.instagram.com/julien.deoux">
+            <a
+              className={styles["link"]}
+              href="https://www.instagram.com/julien.deoux"
+              target="_blank">
               {s("Instagram")}
             </a>
           </li>
