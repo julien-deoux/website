@@ -6,14 +6,13 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 0.5rem;
 }
 
 .title {
   font-family: "EB Garamond", serif;
   font-size: 4rem;
   font-weight: 700;
-  margin: 0 2rem;
+  margin: 0 2rem 1rem;
 }
 
 .cta {
@@ -21,19 +20,19 @@
   font-size: 1.5rem;
   font-weight: 300;
   letter-spacing: 0.03em;
-  margin: 0 2rem;
+  margin: 0 2rem 2rem;
 }
 
 .split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 6rem;
 }
 
 .subtitle {
-  font-family: "EB Garamond", serif;
-  font-size: 2rem;
-  font-weight: 400;
+  font-family: "Manrope", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
   margin: 1rem 0;
 }
 
@@ -64,6 +63,9 @@
   }
   .cta {
     font-size: 1rem;
+  }
+  .split {
+    gap: 3rem;
   }
   .subtitle {
     font-size: 1.5rem;
