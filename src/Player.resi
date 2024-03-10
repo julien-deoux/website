@@ -4,3 +4,8 @@ type player = {
 }
 
 let playerContext: React.Context.t<player>
+
+module Provider: {
+  @react.component
+  let make: (~children: React.element) => React.element
+}
