@@ -25,10 +25,17 @@
   background: none;
   border: none;
   cursor: pointer;
+}
+
+.button:disabled {
+  color: var(--muted);
+}
+
+.button:not(:disabled) {
   color: var(--foreground);
 }
 
-.button:hover {
+.button:not(:disabled):hover {
   color: var(--accent);
 }
 

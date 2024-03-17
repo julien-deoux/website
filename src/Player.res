@@ -15,11 +15,6 @@ type queue = {
   timeout: ref<option<timeoutId>>,
 }
 
-type player = {
-  play: unit => promise<unit>,
-  stop: unit => unit,
-}
-
 let instanciatePlayer = async () => {
   let trackLength = 292571
   // let trackLength = 71000
@@ -102,10 +97,20 @@ let instanciatePlayer = async () => {
     queue.current := createTrack()
   }
 
-  {play, stop}
+  (play, stop)
+}
+
+type playerState = Running | Stopped
+type player = {
+  armed: bool,
+  state: playerState,
+  play: unit => promise<unit>,
+  stop: unit => unit,
 }
 
 let playerContext = React.createContext({
+  armed: false,
+  state: Stopped,
   play: async () => (),
   stop: () => (),
 })
@@ -117,16 +122,33 @@ module InnerProvider = {
 module Provider = {
   @react.component
   let make = (~children) => {
-    let (value, setValue) = React.useState(() => {
-      play: async () => (),
-      stop: () => (),
-    })
+    let (armed, setArmed) = React.useState(() => false)
+    let (state, setState) = React.useState(() => Stopped)
+    let (play, setPlay) = React.useState(() => async () => ())
+    let (stop, setStop) = React.useState(() => () => ())
     React.useEffect0(() => {
       instanciatePlayer()
-      ->Promise.thenResolve(player => setValue(_ => player))
+      ->Promise.thenResolve(((newPlay, newStop)) => {
+        setArmed(_ => true)
+        setPlay(
+          _ => () => {
+            setState(_ => Running)
+            newPlay()
+          },
+        )
+        setStop(
+          _ => () => {
+            setState(_ => Stopped)
+            newStop()
+          },
+        )
+      })
       ->Promise.done
       None
     })
+    let value = React.useMemo3(() => {
+      {state, play, stop, armed}
+    }, (state, play, stop))
     <InnerProvider value> {children} </InnerProvider>
   }
 }

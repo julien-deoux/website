@@ -1,4 +1,7 @@
+type playerState = Running | Stopped
 type player = {
+  armed: bool,
+  state: playerState,
   play: unit => promise<unit>,
   stop: unit => unit,
 }

@@ -2,27 +2,23 @@
 
 module HeaderButton = {
   @react.component
-  let make = (~onClick, ~children) => {
-    <button type_="button" className={styles["button"]} onClick> {children} </button>
+  let make = (~onClick, ~children, ~disabled=false) => {
+    <button type_="button" className={styles["button"]} onClick disabled> {children} </button>
   }
 }
 
 module VolumeSwitch = {
   @react.component
   let make = () => {
-    let {play, stop} = React.useContext(Player.playerContext)
-    let (isPlaying, setIsPlaying) = React.useState(() => false)
+    let {play, stop, state, armed} = React.useContext(Player.playerContext)
     let toggle = () =>
-      setIsPlaying(current => {
-        if current {
-          stop()
-        } else {
-          ignore(play())
-        }
-        !current
-      })
-    <HeaderButton onClick={_ => toggle()}>
-      {if isPlaying {
+      if state == Running {
+        stop()
+      } else {
+        ignore(play())
+      }
+    <HeaderButton onClick={_ => toggle()} disabled={!armed}>
+      {if state == Running {
         <VolumeHigh />
       } else {
         <VolumeXmark />
