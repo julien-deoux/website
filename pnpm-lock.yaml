@@ -24,8 +24,8 @@ devDependencies:
     specifier: ^11.0.1
     version: 11.0.1
   rescript-web-audio:
-    specifier: ^0.2.0
-    version: 0.2.0
+    specifier: ^0.3.0
+    version: 0.3.0
   vite:
     specifier: ^5.1.6
     version: 5.1.6
@@ -567,8 +567,8 @@ packages:
       loose-envify: 1.4.0
     dev: true
 
-  /rescript-web-audio@0.2.0:
-    resolution: {integrity: sha512-P4QWyF8L3Rvn3CLnh+PwYTndXFtktLR5b4Cj63F2l67yBl7t+XfFJ8dG0vTpxSs+F7ul4IW+GOWrAV0PB0wdWw==}
+  /rescript-web-audio@0.3.0:
+    resolution: {integrity: sha512-6LmlGQDBJvS1uqjqeOKzPkHGB6AODOFfUat+c2KpuOnhxRPOGuUeh7x9quUD9lh5OVM8sefa3tg4z/+X3p103g==}
     dependencies:
       '@rescript/core': 1.1.0(rescript@11.0.1)
       rescript: 11.0.1

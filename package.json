@@ -18,7 +18,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rescript": "^11.0.1",
-    "rescript-web-audio": "^0.2.0",
+    "rescript-web-audio": "^0.3.0",
     "vite": "^5.1.6"
   }
 }

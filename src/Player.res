@@ -27,9 +27,9 @@ let instanciatePlayer = async () => {
   let res = await Fetch.fetch(soundtrack)
   let ab = await Fetch.Response.arrayBuffer(res)
   let ctx = AudioContext.make()
-  let buffer = await BaseAudioContext.decodeAudioData(ctx, ab)
+  let buffer = await AudioContext.decodeAudioData(ctx, ab)
 
-  let dest = BaseAudioContext.getDestination(ctx)
+  let dest = AudioContext.getDestination(ctx)
 
   let createTrack = () => {
     let bsn = AudioBufferSourceNode.make(
@@ -44,22 +44,22 @@ let instanciatePlayer = async () => {
         gain: 0.3,
       },
     )
-    let _ = AudioNode.connectNode(gain, dest)
-    let _ = AudioNode.connectNode(bsn, gain)
-    AudioScheduledSourceNode.onEnded(bsn, _ => {
-      AudioNode.disconnectNode(gain, dest)
-      AudioNode.disconnectNode(bsn, gain)
+    let _ = GainNode.connectNode(gain, dest)
+    let _ = AudioBufferSourceNode.connectNode(bsn, gain)
+    AudioBufferSourceNode.onEnded(bsn, _ => {
+      GainNode.disconnectNode(gain, dest)
+      AudioBufferSourceNode.disconnectNode(bsn, gain)
     })
     {
       start: () => {
-        AudioScheduledSourceNode.start(bsn)
+        AudioBufferSourceNode.start(bsn)
       },
       stop: () => {
-        let stopTime = BaseAudioContext.getCurrentTime(ctx) +. 0.05
+        let stopTime = AudioContext.getCurrentTime(ctx) +. 0.05
         let _ = AudioParam.linearRampToValueAtTime(GainNode.getGain(gain), 0.0, stopTime)
-        AudioScheduledSourceNode.stop(bsn, ~when_=stopTime)
+        AudioBufferSourceNode.stop(bsn, ~when_=stopTime)
       },
-      onEnded: cb => AudioScheduledSourceNode.onEnded(bsn, cb),
+      onEnded: cb => AudioBufferSourceNode.onEnded(bsn, cb),
     }
   }
 
@@ -84,7 +84,7 @@ let instanciatePlayer = async () => {
   }
 
   let play = async () => {
-    if BaseAudioContext.getState(ctx) != #running {
+    if AudioContext.getState(ctx) != #running {
       await AudioContext.resume(ctx)
     }
     startCurrent()
