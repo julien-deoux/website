@@ -1,4 +1,4 @@
-open WebAudio
+open WebAPI
 
 %%raw(`import soundtrack from './soundtrack.mp3';`)
 @val external soundtrack: string = "soundtrack"
@@ -19,42 +19,43 @@ let instanciatePlayer = async () => {
   let trackLength = 292571
   // let trackLength = 71000
 
-  let res = await Fetch.fetch(soundtrack)
-  let ab = await Fetch.Response.arrayBuffer(res)
+  let res = await fetch(soundtrack)
+  let audioData = await Response.arrayBuffer(res)
   let ctx = AudioContext.make()
-  let buffer = await AudioContext.decodeAudioData(ctx, ab)
+  let buffer = await ctx->AudioContext.decodeAudioData(~audioData)
 
-  let dest = AudioContext.getDestination(ctx)
+  let destinationNode = ctx.destination->AudioDestinationNode.asAudioNode
+  let context = AudioContext.asBaseAudioContext(ctx)
 
   let createTrack = () => {
     let bsn = AudioBufferSourceNode.make(
-      ctx,
+      ~context,
       ~options={
-        buffer: buffer,
+        buffer: Null.Value(buffer),
       },
     )
     let gain = GainNode.make(
-      ctx,
+      ~context,
       ~options={
         gain: 0.3,
       },
     )
-    let _ = GainNode.connectNode(gain, dest)
-    let _ = AudioBufferSourceNode.connectNode(bsn, gain)
-    AudioBufferSourceNode.onEnded(bsn, _ => {
-      GainNode.disconnectNode(gain, dest)
-      AudioBufferSourceNode.disconnectNode(bsn, gain)
+    let _ = gain->GainNode.connect(~destinationNode)
+    let _ = bsn->AudioBufferSourceNode.connect(~destinationNode=gain->GainNode.asAudioNode)
+    bsn->AudioBufferSourceNode.addEventListener(EventAPI.Ended, () => {
+      gain->GainNode.disconnect
+      bsn->AudioBufferSourceNode.disconnect
     })
     {
       start: () => {
         AudioBufferSourceNode.start(bsn)
       },
       stop: () => {
-        let stopTime = AudioContext.getCurrentTime(ctx) +. 0.05
-        let _ = AudioParam.linearRampToValueAtTime(GainNode.getGain(gain), 0.0, stopTime)
-        AudioBufferSourceNode.stop(bsn, ~when_=stopTime)
+        let endTime = ctx.currentTime +. 0.05
+        let _ = AudioParam.linearRampToValueAtTime(gain.gain, ~value=0.0, ~endTime)
+        AudioBufferSourceNode.stop(bsn, ~when_=endTime)
       },
-      onEnded: cb => AudioBufferSourceNode.onEnded(bsn, cb),
+      onEnded: cb => bsn->AudioBufferSourceNode.addEventListener(EventAPI.Ended, cb),
     }
   }
 
@@ -72,14 +73,14 @@ let instanciatePlayer = async () => {
     })
   }
   and queueNext = () => {
-    setTimeout(() => {
+    Js.Global.setTimeout(() => {
       queue.current := queue.next.contents
       startCurrent()
     }, trackLength)
   }
 
   let play = async () => {
-    if AudioContext.getState(ctx) != #running {
+    if ctx.state != Running {
       await AudioContext.resume(ctx)
     }
     startCurrent()
@@ -88,7 +89,7 @@ let instanciatePlayer = async () => {
   let stop = () => {
     switch queue.timeout.contents {
     | Some(timeoutId) => {
-        clearTimeout(timeoutId)
+        Js.Global.clearTimeout(timeoutId)
         queue.timeout := None
       }
     | None => ()
@@ -131,19 +132,21 @@ module Provider = {
       ->Promise.thenResolve(((newPlay, newStop)) => {
         setArmed(_ => true)
         setPlay(
-          _ => () => {
-            setState(_ => Running)
-            newPlay()
-          },
+          _ =>
+            () => {
+              setState(_ => Running)
+              newPlay()
+            },
         )
         setStop(
-          _ => () => {
-            setState(_ => Stopped)
-            newStop()
-          },
+          _ =>
+            () => {
+              setState(_ => Stopped)
+              newStop()
+            },
         )
       })
-      ->Promise.done
+      ->Promise.ignore
       None
     })
     let value = React.useMemo3(() => {

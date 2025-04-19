@@ -1,5 +1,5 @@
 node_modules
-*.res.js
+*.res.mjs
 lib
 dist
 src/aftermath.mp3

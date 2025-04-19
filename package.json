@@ -6,19 +6,19 @@
   "scripts": {
     "build": "vite build && sh ./ssg.sh",
     "start": "vite",
+    "res:dev": "rescript -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "GPL-v3",
   "devDependencies": {
-    "@jihchi/vite-plugin-rescript": "^5.5.0",
-    "@rescript/core": "^1.1.0",
-    "@rescript/react": "^0.12.1",
+    "@jihchi/vite-plugin-rescript": "^7.0.0",
+    "@rescript/react": "^0.13.1",
+    "@rescript/webapi": "0.1.0-experimental-45ad9b8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rescript": "^11.0.1",
-    "rescript-web-audio": "^0.3.0",
+    "rescript": "^12.0.0-alpha.12",
     "vite": "^5.1.6"
   }
 }

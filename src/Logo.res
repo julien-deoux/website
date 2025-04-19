@@ -5,13 +5,12 @@ let make = (~className="") =>
     height="1em"
     width="1em"
     strokeMiterlimit="10"
-    style={ReactDOM.Style.make(
-      ~fillRule="nonzero",
-      ~clipRule="evenodd",
-      ~strokeLinecap="round",
-      ~strokeLinejoin="round",
-      (),
-    )}
+    style={{
+      fillRule: "nonzero",
+      clipRule: "evenodd",
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+    }}
     version="1.1"
     viewBox="0 0 1024 1024"
     xmlns="http://www.w3.org/2000/svg">
